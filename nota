@@ -1,0 +1,7 @@
+npm init
+se instalo express
+se creo la carpeta server y el archivo server.js
+se creo el servidor
+se instalo body-parser para capturar el body
+se configura el archivo global (para el puerto entre desarrollo y produccion)
+
