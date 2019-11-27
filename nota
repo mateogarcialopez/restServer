@@ -4,4 +4,8 @@ se creo la carpeta server y el archivo server.js
 se creo el servidor
 se instalo body-parser para capturar el body
 se configura el archivo global (para el puerto entre desarrollo y produccion)
+se conecta a la base de datos 
+se configuaran las rutas en un nuevo archivo
+se crea el modelo y se almacena en la base de datos 
+se hacen las validaciones del correo y del tipo de usuario
 
