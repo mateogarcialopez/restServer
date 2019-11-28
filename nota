@@ -8,4 +8,9 @@ se conecta a la base de datos
 se configuaran las rutas en un nuevo archivo
 se crea el modelo y se almacena en la base de datos 
 se hacen las validaciones del correo y del tipo de usuario
+encriptar la contraseña
+quitamos campos que no deben ver los  usuarios
+hacer metodo put
+validar que datos no se pueden actualizar (underscore)
+listar documentos paginados, numero de documentos
 
