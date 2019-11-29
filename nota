@@ -13,4 +13,7 @@ quitamos campos que no deben ver los  usuarios
 hacer metodo put
 validar que datos no se pueden actualizar (underscore)
 listar documentos paginados, numero de documentos
+metodos de eliminar los usuarios
+conectar con mongo atlas
+
 

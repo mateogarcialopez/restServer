@@ -1,5 +1,6 @@
 'use strict'
 
+
 const Usuario = require('../models/usuario')
 const express = require('express');
 const bcrypt = require('bcrypt');
@@ -14,7 +15,7 @@ app.get('/getUser', (req, res) => {
     let limite = req.query.limite || 5;
     limite = Number(limite);
 
-    Usuario.find({}, 'role estado google nombre email')
+    Usuario.find({estado : true}, 'role estado google nombre email')
         .skip(desde)
         .limit(limite)
         .exec((err, usuarios) => {
@@ -26,7 +27,7 @@ app.get('/getUser', (req, res) => {
                 });
             }
 
-            Usuario.count({}, (err, conteo) => {
+            Usuario.count({estado : true}, (err, conteo) => {
 
                 res.json({
 
@@ -37,7 +38,7 @@ app.get('/getUser', (req, res) => {
                 });
 
             })
-        })
+        });
 
 })
 
@@ -71,10 +72,6 @@ app.post('/saveUser', (req, res) => {
     });
 });
 
-app.delete('/delete', (req, res) => {
-    res.send('delete');
-})
-
 app.put('/updateUser/:id', (req, res) => {
 
     let id = req.params.id;
@@ -103,6 +100,70 @@ app.put('/updateUser/:id', (req, res) => {
         res.json({
             status: 'success',
             usuario: userFound,
+        });
+    });
+
+});
+
+app.delete('/deleteUser/:id', (req, res) => {
+
+    let id = req.params.id;
+
+    Usuario.findByIdAndDelete(id, (err, userDeleted) => {
+
+        if (err) {
+            return res.status(400).json({
+                status: 'failed',
+            });
+        }
+
+        if (!userDeleted) {
+            return res.status(400).json({
+                status: 'failed',
+                err: {
+                    message: 'usuario no encontrado',
+                },
+            });
+        }
+
+        return res.json({
+            status: 'success',
+            userDeleted,
+        });
+    });
+
+
+
+})
+
+app.delete('/desactivateUser/:id', (req, res) => {
+
+    let id = req.params.id;
+    console.log(id);
+
+    Usuario.findByIdAndUpdate(id, { estado: false }, { new: true }, (err, userDesactived) => {
+
+
+
+        if (err) {
+            return res.status(400).json({
+                status: 'failed',
+                err
+            });
+        }
+
+        if (!userDesactived) {
+            return res.status(400).json({
+                status: 'failed',
+                err: {
+                    message: 'usuario no encontrado',
+                },
+            });
+        }
+
+        return res.json({
+            status: 'success',
+            userDesactived
         });
     });
 
