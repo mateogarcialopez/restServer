@@ -15,5 +15,8 @@ validar que datos no se pueden actualizar (underscore)
 listar documentos paginados, numero de documentos
 metodos de eliminar los usuarios
 conectar con mongo atlas
-
+crear ruta(controlador) de login 
+ordenar server con archivo de configuracion global, con las rutas
+crear post para el login
+creamos la generacion del token y se configura la duracion y  las firmas como varuables de entorno
 

@@ -2,20 +2,21 @@
 
 require('./config/config'); //configuracion global, para el puerto de conexion - process.env.PORT
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const express = require('express');
+
 const app = express();
 
+const bodyParser = require('body-parser');
 
 //despues de usar estos dos meddlewares podemos utilizar el req.body
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-//rutas
-app.use(require('./routes/usuario'));
+//configuracion global de rutas
+app.use(require('./routes/index'));
 
 //conexion a la base de datos
-mongoose.connect(process.env.urlDB, { useNewUrlParser: true, useCreateIndex: true}, (err, res) => {
+mongoose.connect(process.env.urlDB, { useNewUrlParser: true, useCreateIndex: true }, (err, res) => {
 
     if (err) throw err
 
