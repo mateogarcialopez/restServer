@@ -36,7 +36,7 @@ app.post('/login', (req, res) => {
         }
 
         let token = jwt.sign({
-            token: userFound
+            usuario: userFound
         }, process.env.VERIFY_SIGNATURE, { expiresIn:process.env.LIFE_TOKEN });
 
         return res.json({

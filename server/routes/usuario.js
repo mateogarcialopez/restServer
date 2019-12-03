@@ -1,13 +1,15 @@
 'use strict'
 
-
+const {verificarToken, verificaAdminRol} = require('../middleweares/autenticacion');
 const Usuario = require('../models/usuario')
 const express = require('express');
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const app = express();
 
-app.get('/getUser', (req, res) => {
+app.get('/getUser', verificarToken, (req, res) => {
+
+   
 
     let desde = req.query.desde || 0;
     desde = Number(desde);
@@ -33,7 +35,7 @@ app.get('/getUser', (req, res) => {
 
                     status: 'success',
                     usuarios,
-                    conteo: conteo,
+                    conteo: conteo,                   
 
                 });
 
@@ -42,7 +44,7 @@ app.get('/getUser', (req, res) => {
 
 })
 
-app.post('/saveUser', (req, res) => {
+app.post('/saveUser', [verificarToken, verificaAdminRol], (req, res) => {
 
     var body = req.body;
 
@@ -72,7 +74,7 @@ app.post('/saveUser', (req, res) => {
     });
 });
 
-app.put('/updateUser/:id', (req, res) => {
+app.put('/updateUser/:id', [verificarToken, verificaAdminRol], (req, res) => {
 
     let id = req.params.id;
     let body = _.pick(req.body, ['nombre', 'email', 'img', 'tole', 'estado']); //filtra los campos que quiero del objeto
@@ -105,7 +107,7 @@ app.put('/updateUser/:id', (req, res) => {
 
 });
 
-app.delete('/deleteUser/:id', (req, res) => {
+app.delete('/deleteUser/:id', [verificarToken, verificaAdminRol],  (req, res) => {
 
     let id = req.params.id;
 
@@ -136,7 +138,7 @@ app.delete('/deleteUser/:id', (req, res) => {
 
 })
 
-app.delete('/desactivateUser/:id', (req, res) => {
+app.delete('/desactivateUser/:id', [verificarToken, verificaAdminRol],  (req, res) => {
 
     let id = req.params.id;
     console.log(id);

@@ -18,5 +18,5 @@ conectar con mongo atlas
 crear ruta(controlador) de login 
 ordenar server con archivo de configuracion global, con las rutas
 crear post para el login
-creamos la generacion del token y se configura la duracion y  las firmas como varuables de entorno
-
+creamos la generacion del token y se configura la duracion y  las firmas como variables de entorno
+se crea el middleweare deverificacion de token

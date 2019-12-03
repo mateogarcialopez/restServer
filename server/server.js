@@ -3,10 +3,11 @@
 require('./config/config'); //configuracion global, para el puerto de conexion - process.env.PORT
 const mongoose = require('mongoose');
 const express = require('express');
-
 const app = express();
 
 const bodyParser = require('body-parser');
+
+
 
 //despues de usar estos dos meddlewares podemos utilizar el req.body
 app.use(bodyParser.urlencoded({ extended: true }));
