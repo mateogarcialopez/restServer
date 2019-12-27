@@ -4,6 +4,7 @@ require('./config/config'); //configuracion global, para el puerto de conexion -
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
+const path = require('path');
 
 const bodyParser = require('body-parser');
 
@@ -15,6 +16,9 @@ app.use(bodyParser.json());
 
 //configuracion global de rutas
 app.use(require('./routes/index'));
+
+// habilitar la carpeta public
+app.use(express.static(path.resolve(__dirname, '../public')));
 
 //conexion a la base de datos
 mongoose.connect(process.env.urlDB, { useNewUrlParser: true, useCreateIndex: true }, (err, res) => {
